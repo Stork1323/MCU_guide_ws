@@ -1,0 +1,13 @@
+#!/bin/tcsh
+
+setenv DESIGN CPU
+
+if (! $?) then
+    vcs -sverilog +vcs+lic+wait \
+        -timescale=1ns/1ps \
+        -F filelist.f \
+        -top $DESIGN \
+        -debug_acess -kdb \
+        +error+100 \
+        +lint=all -l comp.log
+endif
